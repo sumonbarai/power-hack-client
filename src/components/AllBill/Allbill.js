@@ -1,4 +1,6 @@
 import React from "react";
+import MyModal from "../shared/MyModal";
+
 import "./AllBill.css";
 
 const Allbill = () => {
@@ -18,9 +20,7 @@ const Allbill = () => {
                   />
                 </div>
                 <div>
-                  <button className="btn btn-success text-uppercase">
-                    add new bill
-                  </button>
+                  <MyModal></MyModal>
                 </div>
               </div>
             </div>
