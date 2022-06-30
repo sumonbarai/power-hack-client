@@ -1,0 +1,10 @@
+.header-area {
+  background-color: #636e72;
+  font-size: 20px;
+  color: #fff;
+  padding: 10px 0;
+  text-transform: capitalize;
+}
+.header-area p {
+  margin-bottom: 0;
+}
