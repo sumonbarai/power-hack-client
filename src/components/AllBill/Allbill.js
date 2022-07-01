@@ -8,7 +8,7 @@ const Allbill = () => {
   const [bill, setBill] = useState([]);
   const [reload, setReload] = useState(false);
   useEffect(() => {
-    const url = "http://localhost:5000/billing-list";
+    const url = "https://serene-ocean-18643.herokuapp.com/billing-list";
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBill(data));

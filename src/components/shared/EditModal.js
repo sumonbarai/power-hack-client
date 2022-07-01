@@ -19,13 +19,16 @@ const EditModal = ({ data }) => {
       amount,
     };
     // put post api
-    fetch(`http://localhost:5000/update-billing/${data._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedBill),
-    })
+    fetch(
+      `https://serene-ocean-18643.herokuapp.com/update-billing/${data._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedBill),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {

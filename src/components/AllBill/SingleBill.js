@@ -6,7 +6,7 @@ const SingleBill = ({ data }) => {
 
   // delete billing list
   const handleDelete = () => {
-    const url = `http://localhost:5000/delete-billing/${_id}`;
+    const url = `https://serene-ocean-18643.herokuapp.com/delete-billing/${_id}`;
     const confirmation = window.confirm("are you sure delete billing list?");
     if (confirmation) {
       fetch(url, {

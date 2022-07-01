@@ -23,7 +23,7 @@ const MyModal = ({ setReload, reload }) => {
       billingId,
     };
     // data post api
-    fetch("http://localhost:5000/add-billing", {
+    fetch("https://serene-ocean-18643.herokuapp.com/add-billing", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
