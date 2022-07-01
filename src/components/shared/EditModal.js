@@ -1,61 +1,57 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import toast from "react-hot-toast";
-import "./MyModal.css";
 
-const MyModal = ({ setReload, reload }) => {
+const EditModal = ({ data }) => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleBilling = (event) => {
+  const handleEdit = (event) => {
     event.preventDefault();
-    let billingId = Math.round(Math.random() * 10000);
     const name = event.target.name.value;
     const email = event.target.email.value;
     const phone = event.target.phone.value;
     const amount = event.target.amount.value;
-    const insertedBill = {
+    const updatedBill = {
       name,
       email,
       phone,
       amount,
-      billingId,
     };
-    // data post api
-    fetch("http://localhost:5000/add-billing", {
-      method: "POST",
+    // put post api
+    fetch(`http://localhost:5000/update-billing/${data._id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(insertedBill),
+      body: JSON.stringify(updatedBill),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          setReload(!reload);
-          toast.success("Successfully added!");
+          toast.success("Successfully update!");
         }
       });
+
     event.target.reset();
     handleClose();
   };
   return (
     <>
       <Button
-        className="text-capitalize"
+        className="text-capitalize bg-warning"
         variant="primary"
         onClick={handleShow}
       >
-        add new bill
+        Edit
       </Button>
 
       <Modal show={show} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
-          <Modal.Title>Add New Bill</Modal.Title>
+          <Modal.Title>Edit Billing information</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="modal-form" onSubmit={handleBilling}>
+          <form className="modal-form" onSubmit={handleEdit}>
             <div>
               <label htmlFor="name">Full Name</label>
               <br />
@@ -86,4 +82,4 @@ const MyModal = ({ setReload, reload }) => {
   );
 };
 
-export default MyModal;
+export default EditModal;

@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MyModal from "../shared/MyModal";
 
 import "./AllBill.css";
+import SingleBill from "./SingleBill";
 
 const Allbill = () => {
+  const [bill, setBill] = useState([]);
+  const [reload, setReload] = useState(false);
+  useEffect(() => {
+    const url = "http://localhost:5000/billing-list";
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setBill(data));
+  }, [bill, reload]);
   return (
     <div className="billing-area">
       <div className="container">
@@ -20,7 +29,7 @@ const Allbill = () => {
                   />
                 </div>
                 <div>
-                  <MyModal></MyModal>
+                  <MyModal reload="reload" setReload={setReload}></MyModal>
                 </div>
               </div>
             </div>
@@ -31,7 +40,7 @@ const Allbill = () => {
             <div className="table-responsive">
               <table className="table">
                 <thead>
-                  <tr>
+                  <tr align="center">
                     <th scope="col">Billing ID</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Email</th>
@@ -41,18 +50,9 @@ const Allbill = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
+                  {bill.map((data) => (
+                    <SingleBill key={data._id} data={data}></SingleBill>
+                  ))}
                 </tbody>
               </table>
             </div>

@@ -1,12 +1,20 @@
 import "./App.css";
-import Header from "./components/Header/Header";
-import Allbill from "./components/AllBill/Allbill";
+
+import { Toaster } from "react-hot-toast";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Registration from "./components/Login/Registration";
 
 function App() {
   return (
     <div>
-      <Header></Header>
-      <Allbill></Allbill>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login></Login>} />
+        <Route path="/registration" element={<Registration></Registration>} />
+      </Routes>
+      <Toaster />
     </div>
   );
 }
